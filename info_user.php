@@ -346,8 +346,8 @@ echo '<!DOCTYPE html>
 <script src="js/bootstrap-fileinput/fileinput.js"></script>
 <script src="js/bootstrap-fileinput/fileinput-zh.js"></script>
 <!-- Simplify -->
-<script src="js/simplify/simplify.js"></script>
 <script src="src/js/sideMenu.js"></script>
+<script src="js/simplify/simplify.js"></script>
 
 <script>
     $(function () {

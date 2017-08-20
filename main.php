@@ -481,9 +481,9 @@ echo '<!DOCTYPE html>
 <script src="js/jquery.easypiechart.min.js"></script>
 
 <!-- Simplify -->
+<script src="src/js/sideMenu.js"></script>
 <script src="js/simplify/simplify.js"></script>
 <script src="js/simplify/simplify_dashboard.js"></script>
-<script src="src/js/sideMenu.js"></script>
 
 <script>
  

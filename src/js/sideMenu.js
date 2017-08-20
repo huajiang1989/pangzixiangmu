@@ -665,6 +665,7 @@ $(function () {
     $(".main-menu").html(GetSideMenuHtml());
     $(".sidebar-fix-bottom").html(GetSidebarHtml());
     $(".user-block").append('<select class="form-control" id="languageChange" style="width: 100px;margin-left:6px;  display: inline; margin-top: 8px;"><option value="cn">中文</option><option value="en">English</option></select>');
+    $('.brand').html('<img src="/images/logo.jpg" style="height: 50px"></img><span class="brand-name">心爱网</span>')
     BindLanguageFunc();
 
     if ($.cookie('language_Option') == "english") {
@@ -672,39 +673,30 @@ $(function () {
         $("#languageChange").val("en")
         BindLanguageFunc();
     }
-	
-	if (location.href.indexOf('main.php') > -1) {
+
+    if (location.href.indexOf('index.html') > -1) {
         $($('.smart-widget-header')[0]).remove();
 
         function InitMemTrees() {
 
             var html = '<ol class="dd-list"><li class="dd-item"> <div class="dd-handle">依次表示账号-等级-推荐人数-业绩-激活日期</div> </li>';
-            
-			 $.ajax({ 
-				 type:"GET", 
-				 url:"getuser.php", 
-				 dataType:"json", 
-				 success: function (data)
-				 {
-					  html += InitTree(data);
-                      html += '</ol>'
-                      $('#nestable').html(html)
-            },
-			 error:function(XMLHttpRequest, textStatus, errorThrown)
-			 {
-				alert(XMLHttpRequest.status);
-				alert(XMLHttpRequest.readyState);
-				alert(textStatus);
-				 }
-			 });
-	
-			
-			
-			
-			
-           
 
-           
+            function InitTree(memlist) {
+                var treehtml = '';
+                for (var i = 0; i < memlist.length; i++) {
+                    var listhtml = '';
+                    if (memlist[i].list.length > 0) {
+                        listhtml = '<ol class="dd-list" style="display: block;">' + InitTree(memlist[i].list) + '</ol>';
+                    }
+                    treehtml += '<li class="dd-item"><div class="dd-handle">' + (memlist[i].list.length > 0 ? '<span class="hassubitem" style="color: red;margin-right: 5px;">+</span>' : '') + memlist[i].name + '</div>' + listhtml + '</li>';
+                }
+
+                return treehtml;
+            }
+
+            html += InitTree(memList);
+            html += '</ol>'
+            $('#nestable').html(html)
         }
 
         InitMemTrees();
@@ -717,23 +709,6 @@ $(function () {
     }
 
 })
-
-
- function InitTree(memlist) {
-                var treehtml = '';
-                for (var i = 0; i < memlist.length; i++) {
-                    var listhtml = '';
-                    if (memlist[i].nodes && memlist[i].nodes.length > 0) {
-                        listhtml = '<ol class="dd-list" style="display: block;">' + InitTree(memlist[i].nodes) + '</ol>';
-                    }
-                    treehtml += '<li class="dd-item"><div class="dd-handle">' + (memlist[i].nodes && memlist[i].nodes.length > 0 ? '<span class="hassubitem" style="color: red;margin-right: 5px;">+</span>' : '') + memlist[i].name + '</div>' + listhtml + '</li>';
-                }
-
-                return treehtml;
-            }
-
-
-
 function BindLanguageFunc() {
     $("#languageChange").on('change', function () {
         if ($(this).val() == "en") {
@@ -771,7 +746,7 @@ function GetSideMenuHtml() {
     var list = [{
         "class": "bg-palette1",
         "class2": "block fa fa-home fa-lg",
-        "href": "main.php",
+        "href": "index.html",
         "title": "首页",
         "subtitle": "首页",
         "submenu": null
@@ -779,7 +754,7 @@ function GetSideMenuHtml() {
     }, {
         "class": "bg-palette2",
         "class2": "block fa fa-desktop fa-lg",
-        "href": "tg_user.php",
+        "href": "tuiguang.html",
         "title": "推广信息",
         "subtitle": "推广",
         "submenu": null
@@ -791,15 +766,15 @@ function GetSideMenuHtml() {
         "title": "钱包管理",
         "subtitle": "钱包",
         "submenu": {
-            "class": "submenu bg-palette4", "list": [{"title": "会员等级提升", "href": "levelup_user.php"},
-                {"title": "会员转账", "href": "trans_user.php"}, {"title": "会员明细", "href": "detail_user.php"}]
+            "class": "submenu bg-palette4", "list": [{"title": "会员等级提升", "href": "memlevelup.html"},
+                {"title": "会员转账", "href": "memtrans.html"}, {"title": "会员明细", "href": "memdetail.html"}]
         }
 
     },
         {
             "class": "bg-palette4",
             "class2": "block fa fa-tags fa-lg",
-            "href": "tx_user.php",
+            "href": "tixian.html",
             "title": "提现管理",
             "subtitle": "提现",
             "submenu": null
@@ -808,20 +783,20 @@ function GetSideMenuHtml() {
         {
             "class": "bg-palette1",
             "class2": "block fa fa-envelope fa-lg",
-            "href": "hk_user.php",
+            "href": "huikuan.html",
             "title": "汇款管理",
             "subtitle": "汇款",
             "submenu": null
 
         }, {
-            "class": "bg-palette2",
+            "class": "bg-palette2 openable",
             "class2": "block fa fa-clock-o fa-lg",
             "href": "#",
             "title": "信息管理",
             "subtitle": "信息",
             "submenu": {
                 "class": "submenu bg-palette4", "list": [{"title": "收件箱", "href": "xinxi.html"},
-                    {"title": "写邮件", "href": "xyj_user.php"}]
+                    {"title": "写邮件", "href": "xieyoujian.html"}]
             }
 
         }, {
@@ -831,15 +806,15 @@ function GetSideMenuHtml() {
             "title": "个人信息管理",
             "subtitle": "管理",
             "submenu": {
-                "class": "submenu bg-palette4", "list": [{"title": "资料修改", "href": "info_user"},
-                    {"title": "密码修改", "href": "pwd_user.php"}, {"title": "交易密码", "href": "jypwd_user.php"}]
+                "class": "submenu bg-palette4", "list": [{"title": "资料修改", "href": "ziliaoxiugai.html"},
+                    {"title": "密码修改", "href": "mimaxiugai.html"}, {"title": "交易密码", "href": "jiaoyimima.html"}]
             }
 
         }];
 
     var html = ' <ul class="accordion"><li class="menu-header">管理菜单</li>';
     var submenuhtml = function (submenu) {
-        var subhtml = '<ul class="submenu bg-palette4" style="display: block;">'
+        var subhtml = '<ul class="submenu bg-palette4" style="display: none;">'
         for (var j = 0; j < submenu.list.length; j++) {
             var subitem = submenu.list[j];
             subhtml += '<li><a href="' + subitem.href + '"><span class="submenu-label">' + subitem.title + '</span></a></li>'
@@ -852,7 +827,7 @@ function GetSideMenuHtml() {
         var item = list[i];
         var pagename = location.href.substr(location.href.lastIndexOf('/') + 1);
 
-        html += '<li class="' + item.class + (pagename == item.href ? " active" : "") + '"><a href="' + item.href + '"><span class="menu-content block"><span class="menu-icon"><i class="' + item.class2 + '"></i></span><span class="text m-left-sm">' + item.title + '</span></span><span class="menu-content-hover block">' + item.subtitle + ' </span></a>' + (item.submenu ? submenuhtml(item.submenu) : "") +
+        html += '<li class="' + item.class + (pagename == item.href ? " active" : "") + '"><a href="' + item.href + '"><span class="menu-content block"><span class="menu-icon"><i class="' + item.class2 + '"></i></span><span class="text m-left-sm">' + item.title + '</span>' + (item.submenu ? '<span class="submenu-icon"></span>' : '') + '</span><span class="menu-content-hover block">' + item.subtitle + ' </span></a>' + (item.submenu ? submenuhtml(item.submenu) : "") +
             '</li>';
     }
 
@@ -865,13 +840,13 @@ function GetSideMenuHtml() {
 
 function GetSidebarHtml() {
     var list = [{
-        "href": "info_user.php", "class": "fa fa-edit fa-lg", "title": "资料修改"
+        "href": "ziliaoxiugai.html", "class": "fa fa-edit fa-lg", "title": "资料修改"
     }, {
-        "href": "pwd_user.php", "class": "fa fa-inbox fa-lg", "title": "密码修改"
+        "href": "mimaxiugai.html", "class": "fa fa-inbox fa-lg", "title": "密码修改"
     }, {
-        "href": "jypwd_user.php", "class": "fa fa-edit fa-lg", "title": "交易密码"
+        "href": "jiaoyimima.html", "class": "fa fa-edit fa-lg", "title": "交易密码"
     }, {
-        "href": "logout.php", "class": "fa fa-power-off fa-lg", "title": "退出"
+        "href": "signin.html", "class": "fa fa-power-off fa-lg", "title": "退出"
     }];
 
     var html = '<div class="user-dropdown dropup pull-left"><a href="#" class="dropdwon-toggle font-18" data-toggle="dropdown"><i class="ion-person-add"></i></a><ul class="dropdown-menu">';
@@ -886,13 +861,13 @@ function GetSidebarHtml() {
 
 function GetUserDropDownHtml() {
     var list = [{
-        "href": "info_user.php", "class": "fa fa-edit fa-lg", "title": "资料修改"
+        "href": "ziliaoxiugai.html", "class": "fa fa-edit fa-lg", "title": "资料修改"
     }, {
-        "href": "pwd_user.php", "class": "fa fa-inbox fa-lg", "title": "密码修改"
+        "href": "mimaxiugai.html", "class": "fa fa-inbox fa-lg", "title": "密码修改"
     }, {
-        "href": "jypwd_user.php", "class": "fa fa-edit fa-lg", "title": "交易密码"
+        "href": "jiaoyimima.html", "class": "fa fa-edit fa-lg", "title": "交易密码"
     }, {
-        "href": "logout.php", "class": "fa fa-power-off fa-lg", "title": "退出"
+        "href": "signin.html", "class": "fa fa-power-off fa-lg", "title": "退出"
     }];
 
     var html = '<li class="user-avatar"><img src="images/profile/profile1.jpg" alt="" class="img-circle"><div class="user-content"><h5 class="no-m-bottom">Jane Doe</h5><div class="m-top-xs"><a href="signin.html">Log out</a></div></div></li><li>';
@@ -905,7 +880,7 @@ function GetUserDropDownHtml() {
 
 function transEnglish() {
 
-    var transLists = _.union(HuiKuanPageTransList(), IndexPageTransList(), SideMenuTransList(), JiaoyimimaTransList(), memDetailTransList(), memlevelupTransList(), memTransTransList(), tuiguangTransList(), ziliaoxiugaiTransList(), tixianTransList(),xinxiTransList()).sort(function (a, b) {
+    var transLists = _.union(HuiKuanPageTransList(), IndexPageTransList(), SideMenuTransList(), JiaoyimimaTransList(), memDetailTransList(), memlevelupTransList(), memTransTransList(), tuiguangTransList(), ziliaoxiugaiTransList(), tixianTransList(), xinxiTransList()).sort(function (a, b) {
         return a.chinese.length < b.chinese.length
     })
 
@@ -997,6 +972,8 @@ function IndexPageTransList() {
         {"chinese": "股权钱包", "english": "Equity wallet"},
         {"chinese": "您的本周收益增长", "english": "Your earnings growth this week"},
         {"chinese": "增长了", "english": "Grew up"},
+        {"chinese": "静态分配", "english": "Static allocation"},
+        {"chinese": "动态分配", "english": "Dynamic allocation"},
         {"chinese": "本金", "english": "principal"},
         {"chinese": "收益", "english": "income"},
         {"chinese": "盈利", "english": "profit"},
@@ -1154,3 +1131,96 @@ function xinxiTransList() {
         {"chinese": "日期", "english": "Data"},
     ];
 }
+//获取滚动条高度和宽度
+function getBodyScroll() {
+    var cWidth = 0, cHeight = 0, sWidth = 0, sHeight = 0, top = 0, left = 0;
+    if (document.compatMode == "BackCompat") {
+        cWidth = document.body.clientWidth;
+        cHeight = document.body.clientHeight;
+        sWidth = document.body.scrollWidth;
+        sHeight = document.body.scrollHeight;
+        left = document.body.scrollLeft;
+        top = document.body.scrollTop;
+    }
+    else { //document.compatMode == "CSS1Compat"
+        cWidth = document.documentElement.clientWidth;
+        cHeight = document.documentElement.clientHeight;
+        sWidth = document.documentElement.scrollWidth;
+        sHeight = document.documentElement.scrollHeight;
+        left = document.documentElement.scrollLeft == 0 ? document.body.scrollLeft : document.documentElement.scrollLeft;
+        top = document.documentElement.scrollTop == 0 ? document.body.scrollTop : document.documentElement.scrollTop;
+    }
+    return {cWidth: cWidth, cHeight: cHeight, sWidth: sWidth, sHeight: sHeight, top: top, left: left};
+}
+
+var hna = {}
+//右侧栏
+//weibo,weixin,service,top
+hna.tools = {
+    _default: 300,
+    footer: null,
+    init: function () {
+        if ($(".hna-fixed-toolbar").length > 0) return;
+        var TRANSITING = false, BOTTOM = 45, status = "OPENED";
+        //从store中读取工具栏状态
+        var hna_status = {fixed_tool: "OPENED"};
+        if (hna_status && hna_status.fixed_tool) {
+            status = hna_status.fixed_tool;
+        } else {
+            hna_status = hna_status || {};
+            hna_status.fixed_tool = status;
+        }
+        var toolbar = $("<ul class='hna-fixed-toolbar'>"), footer = $("#footer-block"),
+            //微信
+            weixin = $("<li class='weixin'><a href='javascript:void(0);'></a><div><span class='saoma'>" + "微信二维码" + "</span><i></i></div></li>"),
+            //微博
+            weibo = $("<li class='weibo'><a href='http://weibo.com/gsair?s=6cm7D0' target='_blank'><img src='src/image/qqicon.jpg' style='height: 90%;margin-top: 3px;margin-left: 7px;background-color: beige;'></a><div class='desc' style='width: 200px;'>" + "QQ:88888888" + "</div></li>"),
+            //人工
+            serv = $("<li class='serv'><a href='javascript:void(0);'></a><div class='desc' style='width: 250px;'>" + "客服电话:027-88888888" + "</div></li>").on("click", function (e) {
+            }),  //收起
+            close = $("<li class='remove'><a href='javascript:void(0);'></a></li>").on("click", function (e) {
+                hna.tools.footer = $(".footer");
+                if (toolbar.hasClass("closed")) {
+                    toolbar.removeClass("closed").animate({top: 200}, 500);
+                    hna.tools.update("OPENED");
+                } else {
+                    var height = hna.tools.footer.offset().top - getBodyScroll().top;
+                    var top = height - 53 + (hna.tools.footer.height() - BOTTOM);
+                    TRANSITING = true;
+                    toolbar.animate({height: 53, top: top}, Math.floor(height * 0.75), function () {
+                        TRANSITING = false;
+                        toolbar.css({top: hna.tools.calculate()});
+                    }).addClass("closed");
+                    hna.tools.update("CLOSED");
+                }
+            });
+
+        $("body").append(toolbar.append(weixin, weibo, serv, close));
+        if (status == "CLOSED") {
+            toolbar.css({top: hna.tools.calculate()}).addClass("closed");
+        }
+        $(window).scroll(function () {
+            var top = getBodyScroll().top || 0;
+            if (top > hna.tools._default) {
+            }
+            if (toolbar.hasClass("closed")) {
+                if (TRANSITING) return;
+                toolbar.css({top: hna.tools.calculate()});
+            }
+        });
+        //this.showSetUp(true);
+    },
+    update: function (status) {
+        var hna_status = {};
+        hna_status.fixed_tool = status;
+    },
+    calculate: function () {
+        hna.tools.footer = $("#footer-block");
+        if (hna.tools.footer.offset()) {
+            return hna.tools.footer.offset().top - getBodyScroll().top - 53 + hna.tools.footer.height() - 45;
+        }
+        return getBodyScroll().sHeight - 100;
+    }
+};
+
+hna.tools.init();

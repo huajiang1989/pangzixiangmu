@@ -284,8 +284,9 @@ echo '<!DOCTYPE html>
 <script src="js/jquery.slimscroll.min.js"></script>
 
 <!-- Simplify -->
-<script src="js/simplify/simplify.js"></script>
 <script src="src/js/sideMenu.js"></script>
+
+<script src="js/simplify/simplify.js"></script>
 
 <script>
 function  ShowInformation(bt,info)

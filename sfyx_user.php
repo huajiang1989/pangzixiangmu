@@ -170,194 +170,248 @@ echo '<!DOCTYPE html>
     </aside>
 
     <div class="main-container">
-        <div class="inbox-wrapper">
-            <div class="inbox-menu">
-                <div class="inbox-menu-sm clearfix">
-                    <button type="button" class="navbar-toggle pull-left sidebar-toggle" id="inboxCollapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <a class="btn btn-danger btn-sm m-top-sm m-right-sm pull-right" href="xieyoujian.html">写邮件</a>
+        <div class="padding-md">
+            <div class="smart-widget m-top-lg widget-green">
+                <div class="smart-widget-header">
+                    收件箱
+                    <span class="smart-widget-option">
+								<span class="refresh-icon-animated">
+									<i class="fa fa-circle-o-notch fa-spin"></i>
+								</span>
+	                            <a href="#" class="widget-toggle-hidden-option">
+	                                <i class="fa fa-cog"></i>
+	                            </a>
+	                            <a href="#" class="widget-collapse-option" data-toggle="collapse">
+	                                <i class="fa fa-chevron-up"></i>
+	                            </a>
+	                            <a href="#" class="widget-refresh-option">
+	                                <i class="fa fa-refresh"></i>
+	                            </a>
+	                            <a href="#" class="widget-remove-option">
+	                                <i class="fa fa-times"></i>
+	                            </a>
+	                        </span>
                 </div>
-
-                <div class="padding-md text-center visible-lg visible-md">
-                    <a class="btn btn-danger" href="xieyoujian.html">写邮件</a>
-                </div>
-
-                <div class="inbox-menu-inner">
-
-                    <ul>
-                        <li class="active">
-                            <a href="#">
-                                收件箱
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-
-                                发件箱
-                            </a>
-                        </li>
-                </div><!-- ./inbox-menu-inner -->
-                <!--</div>-->
-            </div><!-- ./inbox-menu -->
-
-            <div class="inbox-body padding-md">
-                <div class="pagination-row clearfix m-bottom-md">
-                    <div class="pull-left vertical-middle hidden-xs">112 messages</div>
-                    <div class="pull-right pull-left-sm">
-                        <div class="inline-block vertical-middle m-right-xs">Page 1 of 8</div>
-                        <ul class="pagination vertical-middle">
-                            <li class="disabled"><a href="#"><i class="fa fa-step-backward"></i></a></li>
-                            <li class="disabled"><a href="#"><i class="fa fa-caret-left large"></i></a></li>
-                            <li><a href="#"><i class="fa fa-caret-right large"></i></a></li>
-                            <li><a href="#"><i class="fa fa-step-forward"></i></a></li>
+                <div class="smart-widget-inner">
+                    <div class="smart-widget-hidden-section">
+                        <ul class="widget-color-list clearfix">
+                            <li style="background-color:#20232b;" data-color="widget-dark"></li>
+                            <li style="background-color:#4c5f70;" data-color="widget-dark-blue"></li>
+                            <li style="background-color:#23b7e5;" data-color="widget-blue"></li>
+                            <li style="background-color:#2baab1;" data-color="widget-green"></li>
+                            <li style="background-color:#edbc6c;" data-color="widget-yellow"></li>
+                            <li style="background-color:#fbc852;" data-color="widget-orange"></li>
+                            <li style="background-color:#e36159;" data-color="widget-red"></li>
+                            <li style="background-color:#7266ba;" data-color="widget-purple"></li>
+                            <li style="background-color:#f5f5f5;" data-color="widget-light-grey"></li>
+                            <li style="background-color:#fff;" data-color="reset"></li>
                         </ul>
                     </div>
-                </div><!-- ./pagination-row -->
+                    <div class="smart-widget-body">
+                        <div class="message-table table-responsive">
+                            <table class="table table-bordereds">
+                                <thead>
+                                <tr>
 
-                <div class="message-table table-responsive">
-                    <table class="table table-bordereds">
-                        <thead>
-                        <tr>
-                            <th class="text-center">
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="chkAll" class="inbox-check">
-                                    <label for="chkAll"></label>
-                                </div>
-                            </th>
-                            <th></th>
-                            <th>作者</th>
-                            <th>信息</th>
-                            <th>日期</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="text-center">
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="chk1" class="inbox-check">
-                                    <label for="chk1"></label>
-                                </div>
-                            </td>
-                            <td><a href="#"><i class="fa fa-star-o fa-lg"></i></a></td>
-                            <td>
-                                <div class="author-name">
-                                    <a href="#"><strong class="block font-md">会员1</strong></a>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#">
-                                    你好，我的投资
-                                    <small class="block">谢谢推荐</small>
-                                </a>
-                            </td>
-                            <td>Today, 9.03</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="chk1" class="inbox-check">
-                                    <label for="chk1"></label>
-                                </div>
-                            </td>
-                            <td><a href="#"><i class="fa fa-star-o fa-lg"></i></a></td>
-                            <td>
-                                <div class="author-name">
-                                    <a href="#"><strong class="block font-md">会员1</strong></a>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#">
-                                    你好，我的投资
-                                    <small class="block">谢谢推荐</small>
-                                </a>
-                            </td>
-                            <td>Today, 9.03</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="chk1" class="inbox-check">
-                                    <label for="chk1"></label>
-                                </div>
-                            </td>
-                            <td><a href="#"><i class="fa fa-star-o fa-lg"></i></a></td>
-                            <td>
-                                <div class="author-name">
-                                    <a href="#"><strong class="block font-md">会员1</strong></a>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#">
-                                    你好，我的我的投资
-                                    <small class="block">谢谢推荐</small>
-                                </a>
-                            </td>
-                            <td>Today, 9.03</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="chk1" class="inbox-check">
-                                    <label for="chk1"></label>
-                                </div>
-                            </td>
-                            <td><a href="#"><i class="fa fa-star-o fa-lg"></i></a></td>
-                            <td>
-                                <div class="author-name">
-                                    <a href="#"><strong class="block font-md">会员1</strong></a>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#">
-                                    你好，我的投资
-                                    <small class="block">谢谢推荐</small>
-                                </a>
-                            </td>
-                            <td>Today, 9.03</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="chk1" class="inbox-check">
-                                    <label for="chk1"></label>
-                                </div>
-                            </td>
-                            <td><a href="#"><i class="fa fa-star-o fa-lg"></i></a></td>
-                            <td>
-                                <div class="author-name">
-                                    <a href="#"><strong class="block font-md">会员1</strong></a>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#">
-                                    你好，我的投资
-                                    <small class="block">谢谢推荐</small>
-                                </a>
-                            </td>
-                            <td>Today, 9.03</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div><!-- ./message-table -->
-                <div class="pagination-row clearfix">
-                    <div class="pull-left vertical-middle hidden-xs">112 messages</div>
-                    <div class="pull-right pull-left-sm">
-                        <div class="inline-block vertical-middle m-right-xs">Page 1 of 8</div>
-                        <ul class="pagination vertical-middle">
-                            <li class="disabled"><a href="#"><i class="fa fa-step-backward"></i></a></li>
-                            <li class="disabled"><a href="#"><i class="fa fa-caret-left large"></i></a></li>
-                            <li><a href="#"><i class="fa fa-caret-right large"></i></a></li>
-                            <li><a href="#"><i class="fa fa-step-forward"></i></a></li>
+                                    <th>会员</th>
+                                    <th>信息</th>
+                                    <th>日期</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="author-name">
+                                            <a href="#"><strong class="block font-md">会员1</strong></a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            你好，我的投资
+                                            <small class="block">谢谢推荐</small>
+                                        </a>
+                                    </td>
+                                    <td>Today, 9.03</td>
+                                    <td><a href="#" style="color: red">删除</a></td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <div class="author-name">
+                                            <a href="#"><strong class="block font-md">会员1</strong></a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            你好，我的投资
+                                            <small class="block">谢谢推荐</small>
+                                        </a>
+                                    </td>
+                                    <td>Today, 9.03</td>
+                                    <td><a href="#" style="color: red">删除</a></td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <div class="author-name">
+                                            <a href="#"><strong class="block font-md">会员1</strong></a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            你好，我的我的投资
+                                            <small class="block">谢谢推荐</small>
+                                        </a>
+                                    </td>
+                                    <td>Today, 9.03</td>
+                                    <td><a href="#" style="color: red">删除</a></td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <div class="author-name">
+                                            <a href="#"><strong class="block font-md">会员1</strong></a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            你好，我的投资
+                                            <small class="block">谢谢推荐</small>
+                                        </a>
+                                    </td>
+                                    <td>Today, 9.03</td>
+                                    <td><a href="#" style="color: red">删除</a></td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <div class="author-name">
+                                            <a href="#"><strong class="block font-md">会员1</strong></a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            你好，我的投资
+                                            <small class="block">谢谢推荐</small>
+                                        </a>
+                                    </td>
+                                    <td>Today, 9.03</td>
+                                    <td><a href="#" style="color: red">删除</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- ./message-table -->
+                    </div>
+                </div><!-- ./smart-widget-inner -->
+            </div>
+
+            <div class="smart-widget m-top-lg widget-green">
+                <div class="smart-widget-header">
+                    发件箱
+                    <span class="smart-widget-option">
+								<span class="refresh-icon-animated">
+									<i class="fa fa-circle-o-notch fa-spin"></i>
+								</span>
+	                            <a href="#" class="widget-toggle-hidden-option">
+	                                <i class="fa fa-cog"></i>
+	                            </a>
+	                            <a href="#" class="widget-collapse-option" data-toggle="collapse">
+	                                <i class="fa fa-chevron-up"></i>
+	                            </a>
+	                            <a href="#" class="widget-refresh-option">
+	                                <i class="fa fa-refresh"></i>
+	                            </a>
+	                            <a href="#" class="widget-remove-option">
+	                                <i class="fa fa-times"></i>
+	                            </a>
+	                        </span>
+                </div>
+                <div class="smart-widget-inner">
+                    <div class="smart-widget-hidden-section">
+                        <ul class="widget-color-list clearfix">
+                            <li style="background-color:#20232b;" data-color="widget-dark"></li>
+                            <li style="background-color:#4c5f70;" data-color="widget-dark-blue"></li>
+                            <li style="background-color:#23b7e5;" data-color="widget-blue"></li>
+                            <li style="background-color:#2baab1;" data-color="widget-green"></li>
+                            <li style="background-color:#edbc6c;" data-color="widget-yellow"></li>
+                            <li style="background-color:#fbc852;" data-color="widget-orange"></li>
+                            <li style="background-color:#e36159;" data-color="widget-red"></li>
+                            <li style="background-color:#7266ba;" data-color="widget-purple"></li>
+                            <li style="background-color:#f5f5f5;" data-color="widget-light-grey"></li>
+                            <li style="background-color:#fff;" data-color="reset"></li>
                         </ul>
                     </div>
-                </div><!-- ./pagination-row -->
-            </div><!-- ./inbox-body -->
-        </div><!-- ./inbox-wrapper -->
-    </div><!-- /main-container -->
+                    <div class="smart-widget-body">
+                        <div class="message-table table-responsive">
+                            <table class="table table-bordereds">
+                                <thead>
+                                <tr>
+
+                                    <th>会员</th>
+                                    <th>信息</th>
+                                    <th>日期</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="author-name">
+                                            <a href="#"><strong class="block font-md">会员1</strong></a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            你好，我的投资
+                                            <small class="block">谢谢推荐</small>
+                                        </a>
+                                    </td>
+                                    <td>Today, 9.03</td>
+                                    <td><a href="#" style="color: red">删除</a></td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <div class="author-name">
+                                            <a href="#"><strong class="block font-md">会员1</strong></a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            你好，我的投资
+                                            <small class="block">谢谢推荐</small>
+                                        </a>
+                                    </td>
+                                    <td>Today, 9.03</td>
+                                    <td><a href="#" style="color: red">删除</a></td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <div class="author-name">
+                                            <a href="#"><strong class="block font-md">会员1</strong></a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            你好，我的我的投资
+                                            <small class="block">谢谢推荐</small>
+                                        </a>
+                                    </td>
+                                    <td>Today, 9.03</td>
+                                    <td><a href="#" style="color: red">删除</a></td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div><!-- ./message-table -->
+                    </div>
+                </div><!-- ./smart-widget-inner -->
+            </div>
+        </div><!-- ./inbox-body -->
+    </div><!-- ./inbox-wrapper -->
 
     <footer class="footer">
 				<span class="footer-brand">

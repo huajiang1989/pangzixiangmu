@@ -674,7 +674,7 @@ $(function () {
         BindLanguageFunc();
     }
 
-    if (location.href.indexOf('index.html') > -1) {
+    if (location.href.substr(location.href.lastIndexOf('/') + 1) == "index.html" || !location.href.substr(location.href.lastIndexOf('/') + 1)) {
         $($('.smart-widget-header')[0]).remove();
 
         function InitMemTrees() {
@@ -694,7 +694,7 @@ $(function () {
                 return treehtml;
             }
 
-            html += InitTree(memList);
+            html += InitTree(__memList);
             html += '</ol>'
             $('#nestable').html(html)
         }
@@ -915,7 +915,9 @@ function SideMenuTransList() {
         {"chinese": "信息管理", "english": "Info"},
         {"chinese": "信息", "english": "Message"},
         {"chinese": "管理菜单", "english": "Manage"},
-        {"chinese": "管理", "english": "Manage"}
+        {"chinese": "管理", "english": "Manage"},
+        {"chinese": "级别", "english": "Level"},
+        {"chinese": "业绩", "english": "Score"},
     ]
 };
 

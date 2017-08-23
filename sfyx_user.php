@@ -141,6 +141,15 @@ echo '<!DOCTYPE html>
                 </ul>
                 <div class="pull-right m-right-sm">
                     <div class="user-block hidden-xs">
+                        <div class="user-detail inline-block">
+                            <a style="color:red;">级别：</a>村代理
+                        </div>
+                        <div class="user-detail inline-block">
+                            <a style="color:red;">账号：</a>A
+                        </div>
+                        <div class="user-detail inline-block">
+                            <a style="color:red;">业绩：</a>1000
+                        </div>
                         <a href="#" id="userToggle" data-toggle="dropdown">
                             <img src="images/profile/profile1.jpg" alt=""
                                  class="img-circle inline-block user-profile-pic">

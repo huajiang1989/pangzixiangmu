@@ -489,6 +489,22 @@ echo '<!DOCTYPE html>
 
 <script src="js/jquery.easypiechart.min.js"></script>
 
+<script>
+    var __memList = [{
+        "name": "A-激活-镇代理-4-0-2015-07-22",
+        "list": [{"name": "B-激活-镇代理-4-0-2015-07-22", "list": []},
+            {"name": "C-激活-镇代理-4-0-2015-07-22", "list": []},
+            {
+                "name": "D-激活-镇代理-4-0-2015-07-22",
+                "list": [{"name": "E-激活-镇代理-4-0-2015-07-22", "list": []},
+                    {"name": "F-激活-镇代理-4-0-2015-07-22", "list": []},
+                    {"name": "G-激活-镇代理-4-0-2015-07-22", "list": []}]
+            }]
+    },
+        {"name": "H-激活-镇代理-4-0-2015-07-22", "list": []},
+        {"name": "I-激活-镇代理-4-0-2015-07-22", "list": []}];
+
+</script>
 <!-- Simplify -->
 <script src="src/js/sideMenu.js"></script>
 <script src="js/simplify/simplify.js"></script>

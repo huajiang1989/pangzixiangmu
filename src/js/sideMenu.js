@@ -674,7 +674,7 @@ $(function () {
         BindLanguageFunc();
     }
 
-    if (location.href.substr(location.href.lastIndexOf('/') + 1) == "index.html" || !location.href.substr(location.href.lastIndexOf('/') + 1)) {
+    if (location.href.indexOf('main.php') > -1) {
         $($('.smart-widget-header')[0]).remove();
 
         function InitMemTrees() {

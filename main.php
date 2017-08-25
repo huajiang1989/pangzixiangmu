@@ -125,7 +125,7 @@ echo '<!DOCTYPE html>
                     </li>
                 </ul>
                 <div class="pull-right m-right-sm">
-                    <div class="user-block hidden-xs">
+                    <div style="position: relative;float: left;display: block; margin-right: 20px;padding: 20px 0;outline: none;">
                         <div class="user-detail inline-block">
                             <a style="color:red;">级别：</a>村代理
                         </div>
@@ -135,6 +135,8 @@ echo '<!DOCTYPE html>
                         <div class="user-detail inline-block">
                             <a style="color:red;">业绩：</a>1000
                         </div>
+                    </div>
+                    <div class="user-block hidden-xs">
                         <a href="#" id="userToggle" data-toggle="dropdown">
                             <img src="images/profile/profile1.jpg" alt=""
                                  class="img-circle inline-block user-profile-pic">
@@ -297,15 +299,15 @@ echo '<!DOCTYPE html>
                         
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img src="http://www.runoob.com/wp-content/uploads/2014/07/slide1.png"
+                                <img src="src/image/lunbotu1.jpg"
                                      alt="First slide">
                             </div>
                             <div class="item">
-                                <img src="http://www.runoob.com/wp-content/uploads/2014/07/slide2.png"
+                                <img src="src/image/lunbotu1.jpg"
                                      alt="Second slide">
                             </div>
                             <div class="item">
-                                <img src="http://www.runoob.com/wp-content/uploads/2014/07/slide3.png"
+                                <img src="src/image/lunbotu1.jpg"
                                      alt="Third slide">
                             </div>
                         </div>

@@ -104,7 +104,7 @@ echo '<!DOCTYPE html>
                     </li>
                 </ul>
 
-                <a href="index.html" class="brand">
+                <a href="main.php" class="brand">
                     <i class="fa fa-database"></i><span class="brand-name">心爱网</span>
                 </a>
             </div>
@@ -125,20 +125,20 @@ echo '<!DOCTYPE html>
                     </li>
                 </ul>
                 <div class="pull-right m-right-sm">
-                    <div style="position: relative;float: left;display: block; margin-right: 20px;padding: 20px 0;outline: none;">
+                      <div style="position: relative;float: left;display: block; margin-right: 20px;padding: 20px 0;outline: none;">
                         <div class="user-detail inline-block">
-                            <a style="color:red;">级别：</a>村代理
+                            <a style="color:red;">级别：</a>';if($user["rank"]=="0") echo '未确定';else echo getuserrank($user["rank"]);echo ' 
                         </div>
                         <div class="user-detail inline-block">
-                            <a style="color:red;">账号：</a>A
+                            <a style="color:red;">账号：</a>';echo $user["username"];echo '
                         </div>
                         <div class="user-detail inline-block">
-                            <a style="color:red;">业绩：</a>1000
+                            <a style="color:red;">业绩：</a>';echo $user["summoney"];echo '
                         </div>
                     </div>
                     <div class="user-block hidden-xs">
                         <a href="#" id="userToggle" data-toggle="dropdown">
-                            <img src="images/profile/profile1.jpg" alt=""
+                            <img src="images/profile/';if(empty($user["sex"])) echo 'a4.png';else { if(trim($user["sex"])=="男") echo 'profile9.jpg'; else echo 'profile2.jpg'; }echo ' " alt=""
                                  class="img-circle inline-block user-profile-pic">
                             <div class="user-detail inline-block">
                                 ';echo $user["realname"];echo '
@@ -235,7 +235,7 @@ echo '<!DOCTYPE html>
                 <div class="col-lg-3 col-sm-6">
                     <div class="statistic-box bg-success m-bottom-md">
                         <div class="statistic-title">
-                            退本钱包
+                            贵股钱包
                         </div>
 
                         <div class="statistic-value">
@@ -421,40 +421,7 @@ echo '<!DOCTYPE html>
                     </div>
                     <div class="smart-widget-body">
                         <div class="dd" id="nestable">
-                            <!--<ol class="dd-list">-->
-                                <!--<li class="dd-item" data-id="1">-->
-                                    <!--<div class="dd-handle">依次表示账号-等级-推荐人数-业绩-激活日期</div>-->
-                                <!--</li>-->
-                                <!--<li class="dd-item" data-id="2">-->
-                                    <!--<div class="dd-handle">A-激活-镇代理-4-0-2015-07-22</div>-->
-                                    <!--<ol class="dd-list">-->
-                                        <!--<li class="dd-item" data-id="3">-->
-                                            <!--<div class="dd-handle">B-激活-镇代理-4-0-2015-07-22</div>-->
-                                        <!--</li>-->
-                                        <!--<li class="dd-item" data-id="4">-->
-                                            <!--<div class="dd-handle">C-激活-镇代理-4-0-2015-07-22</div>-->
-                                        <!--</li>-->
-                                        <!--<li class="dd-item" data-id="5">-->
-                                            <!--<div class="dd-handle">D-激活-镇代理-4-0-2015-07-22</div>-->
-                                            <!--<ol class="dd-list">-->
-                                                <!--<li class="dd-item" data-id="6">-->
-                                                    <!--<div class="dd-handle">E-激活-镇代理-4-0-2015-07-22</div>-->
-                                                <!--</li>-->
-                                                <!--<li class="dd-item" data-id="7">-->
-                                                    <!--<div class="dd-handle">F-激活-镇代理-4-0-2015-07-22</div>-->
-                                                <!--</li>-->
-                                            <!--</ol>-->
-                                        <!--</li>-->
-
-                                    <!--</ol>-->
-                                <!--</li>-->
-                                <!--<li class="dd-item" data-id="9">-->
-                                    <!--<div class="dd-handle">G-激活-镇代理-4-0-2015-07-22</div>-->
-                                <!--</li>-->
-                                <!--<li class="dd-item" data-id="10">-->
-                                    <!--<div class="dd-handle">H-激活-镇代理-4-0-2015-07-22</div>-->
-                                <!--</li>-->
-                            <!--</ol>-->
+                           
                         </div>
                     </div>
                 </div><!-- ./smart-widget-inner -->
@@ -492,20 +459,13 @@ echo '<!DOCTYPE html>
 <script src="js/jquery.easypiechart.min.js"></script>
 
 <script>
-    var __memList = [{
-        "name": "A-激活-镇代理-4-0-2015-07-22",
-        "list": [{"name": "B-激活-镇代理-4-0-2015-07-22", "list": []},
-            {"name": "C-激活-镇代理-4-0-2015-07-22", "list": []},
-            {
-                "name": "D-激活-镇代理-4-0-2015-07-22",
-                "list": [{"name": "E-激活-镇代理-4-0-2015-07-22", "list": []},
-                    {"name": "F-激活-镇代理-4-0-2015-07-22", "list": []},
-                    {"name": "G-激活-镇代理-4-0-2015-07-22", "list": []}]
-            }]
-    },
-        {"name": "H-激活-镇代理-4-0-2015-07-22", "list": []},
-        {"name": "I-激活-镇代理-4-0-2015-07-22", "list": []}];
-
+    var _userName = '<?php echo $user["realname"];?>' || "尊贵的会员";
+    var _userSex = '<?php echo $user["sex"];?>';
+    var _userHeadPic = (function () {
+        if (!_userSex)return 'images/profile/a4.png';
+        else if (_userSex == "男") return 'images/profile/profile9.png';
+        else  return 'images/profile/profile2.png';
+    })();
 </script>
 <!-- Simplify -->
 <script src="src/js/sideMenu.js"></script>

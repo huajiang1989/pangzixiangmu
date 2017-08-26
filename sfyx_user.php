@@ -14,14 +14,14 @@ if($action=="sjdel")
 {
 	$sql_1="delete from {$db_prefix}mails where id='".$id."'";
     $db->query($sql_1);
-    header("location:xx_user.php");exit();
+    header("location:sfyx_user.php");exit();
 }
 
 if($action=="fjdel")
 {
 	$sql_1="delete from {$db_prefix}mails1 where id='".$id."'";
     $db->query($sql_1);
-    header("location:xx_user.php");exit();
+    header("location:sfyx_user.php");exit();
 }
 
 
@@ -119,7 +119,7 @@ echo '<!DOCTYPE html>
                     </li>
                 </ul>
 
-                <a href="index.html" class="brand">
+                <a href="main.php" class="brand">
                     <i class="fa fa-database"></i><span class="brand-name">心爱网</span>
                 </a>
             </div>
@@ -140,20 +140,20 @@ echo '<!DOCTYPE html>
                     </li>
                 </ul>
                 <div class="pull-right m-right-sm">
-                    <div style="position: relative;float: left;display: block; margin-right: 20px;padding: 20px 0;outline: none;">
+                      <div style="position: relative;float: left;display: block; margin-right: 20px;padding: 20px 0;outline: none;">
                         <div class="user-detail inline-block">
-                            <a style="color:red;">级别：</a>村代理
+                            <a style="color:red;">级别：</a>';if($user["rank"]=="0") echo '未确定';else echo getuserrank($user["rank"]);echo ' 
                         </div>
                         <div class="user-detail inline-block">
-                            <a style="color:red;">账号：</a>A
+                            <a style="color:red;">账号：</a>';echo $user["username"];echo '
                         </div>
                         <div class="user-detail inline-block">
-                            <a style="color:red;">业绩：</a>1000
+                            <a style="color:red;">业绩：</a>';echo $user["summoney"];echo '
                         </div>
                     </div>
                     <div class="user-block hidden-xs">
                         <a href="#" id="userToggle" data-toggle="dropdown">
-                            <img src="images/profile/profile1.jpg" alt=""
+                            <img src="images/profile/';if(empty($user["sex"])) echo 'a4.png';else { if(trim($user["sex"])=="男") echo 'profile9.jpg'; else echo 'profile2.jpg'; }echo ' " alt=""
                                  class="img-circle inline-block user-profile-pic">
                             <div class="user-detail inline-block">
                                 ';echo $user["realname"];echo '
@@ -224,93 +224,36 @@ echo '<!DOCTYPE html>
                                 <thead>
                                 <tr>
 
-                                    <th>会员</th>
+                                    <th>标题</th>
                                     <th>信息</th>
                                     <th>日期</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="author-name">
-                                            <a href="#"><strong class="block font-md">会员1</strong></a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            你好，我的投资
-                                            <small class="block">谢谢推荐</small>
-                                        </a>
-                                    </td>
-                                    <td>Today, 9.03</td>
-                                    <td><a href="#" style="color: red">删除</a></td>
-                                </tr>
-                                <tr>
-
-                                    <td>
-                                        <div class="author-name">
-                                            <a href="#"><strong class="block font-md">会员1</strong></a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            你好，我的投资
-                                            <small class="block">谢谢推荐</small>
-                                        </a>
-                                    </td>
-                                    <td>Today, 9.03</td>
-                                    <td><a href="#" style="color: red">删除</a></td>
-                                </tr>
-                                <tr>
-
-                                    <td>
-                                        <div class="author-name">
-                                            <a href="#"><strong class="block font-md">会员1</strong></a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            你好，我的我的投资
-                                            <small class="block">谢谢推荐</small>
-                                        </a>
-                                    </td>
-                                    <td>Today, 9.03</td>
-                                    <td><a href="#" style="color: red">删除</a></td>
-                                </tr>
-                                <tr>
-
-                                    <td>
-                                        <div class="author-name">
-                                            <a href="#"><strong class="block font-md">会员1</strong></a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            你好，我的投资
-                                            <small class="block">谢谢推荐</small>
-                                        </a>
-                                    </td>
-                                    <td>Today, 9.03</td>
-                                    <td><a href="#" style="color: red">删除</a></td>
-                                </tr>
-                                <tr>
-
-                                    <td>
-                                        <div class="author-name">
-                                            <a href="#"><strong class="block font-md">会员1</strong></a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            你好，我的投资
-                                            <small class="block">谢谢推荐</small>
-                                        </a>
-                                    </td>
-                                    <td>Today, 9.03</td>
-                                    <td><a href="#" style="color: red">删除</a></td>
-                                </tr>
-                                </tbody>
+                                <tbody>';
+				$sql="select *,FROM_UNIXTIME(addtime, '%Y-%m-%d %H:%i:%s' ) sdtime from {$db_prefix}mails where 1 and username='".$_SESSION["glo_username"]."' order by id desc limit 5";
+                $result=$db->query($sql);
+				if ($db->num_rows($result)>0){
+					$i=0;
+                    while($rs=$db->fetch_array($result)){	
+					        $i++;
+							echo '<tr>
+										<td>
+											<div class="author-name">
+												<a href="#"><strong class="block font-md">';echo $rs["title"];echo '</strong></a>
+											</div>
+										</td>
+										<td>
+											<a href="#">
+												';echo $rs["content"];echo '
+											</a>
+										</td>
+										<td>';echo $rs["sdtime"];echo '</td>
+										<td><a href="sfyx_user.php?action=sjdel&id=';echo $rs["id"];echo '" style="color: red">删除</a></td>
+									</tr>';
+						     }
+					 }
+                              echo '</tbody>
                             </table>
                         </div><!-- ./message-table -->
                     </div>
@@ -359,62 +302,38 @@ echo '<!DOCTYPE html>
                                 <thead>
                                 <tr>
 
-                                    <th>会员</th>
+                                    <th>标题</th>
                                     <th>信息</th>
                                     <th>日期</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+								';
+				$sql="select *,FROM_UNIXTIME(addtime, '%Y-%m-%d %H:%i:%s' ) sdtime from {$db_prefix}mails1 where 1 and username='".$_SESSION["glo_username"]."' order by id desc ";
+                        $result=$db->query($sql);
+                        if ($db->num_rows($result)>0){
+							$i=0;
+                        while($rs=$db->fetch_array($result)){	
+						  $i++;
+							echo '
                                 <tr>
                                     <td>
                                         <div class="author-name">
-                                            <a href="#"><strong class="block font-md">会员1</strong></a>
+                                            <a href="#"><strong class="block font-md">';echo $rs["title"];echo '</strong></a>
                                         </div>
                                     </td>
                                     <td>
                                         <a href="#">
-                                            你好，我的投资
-                                            <small class="block">谢谢推荐</small>
+                                            ';echo $rs["content"];echo '
                                         </a>
                                     </td>
-                                    <td>Today, 9.03</td>
-                                    <td><a href="#" style="color: red">删除</a></td>
-                                </tr>
-                                <tr>
-
-                                    <td>
-                                        <div class="author-name">
-                                            <a href="#"><strong class="block font-md">会员1</strong></a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            你好，我的投资
-                                            <small class="block">谢谢推荐</small>
-                                        </a>
-                                    </td>
-                                    <td>Today, 9.03</td>
-                                    <td><a href="#" style="color: red">删除</a></td>
-                                </tr>
-                                <tr>
-
-                                    <td>
-                                        <div class="author-name">
-                                            <a href="#"><strong class="block font-md">会员1</strong></a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            你好，我的我的投资
-                                            <small class="block">谢谢推荐</small>
-                                        </a>
-                                    </td>
-                                    <td>Today, 9.03</td>
-                                    <td><a href="#" style="color: red">删除</a></td>
-                                </tr>
-
-
+                                    <td>';echo $rs["sdtime"];echo '</td>
+                                    <td><a href="sfyx_user.php?action=fjdel&id=';echo $rs["id"];echo '" style="color: red">删除</a></td>
+                                </tr>';
+						     }
+					 }
+                              echo '
                                 </tbody>
                             </table>
                         </div><!-- ./message-table -->
@@ -448,7 +367,15 @@ echo '<!DOCTYPE html>
 
 <!-- Slimscroll -->
 <script src="js/jquery.slimscroll.min.js"></script>
-
+<script>
+    var _userName = '<?php echo $user["realname"];?>' || "尊贵的会员";
+    var _userSex = '<?php echo $user["sex"];?>';
+    var _userHeadPic = (function () {
+        if (!_userSex)return 'images/profile/a4.png';
+        else if (_userSex == "男") return 'images/profile/profile9.png';
+        else  return 'images/profile/profile2.png';
+    })();
+</script>
 <!-- Simplify -->
 <script src="src/js/sideMenu.js"></script>
 

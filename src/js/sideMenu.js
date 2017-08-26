@@ -681,22 +681,23 @@ $(function () {
 
             var html = '<ol class="dd-list"><li class="dd-item"> <div class="dd-handle">依次表示账号-等级-推荐人数-业绩-激活日期</div> </li>';
 
-            function InitTree(memlist) {
-                var treehtml = '';
-                for (var i = 0; i < memlist.length; i++) {
-                    var listhtml = '';
-                    if (memlist[i].list.length > 0) {
-                        listhtml = '<ol class="dd-list" style="display: block;">' + InitTree(memlist[i].list) + '</ol>';
-                    }
-                    treehtml += '<li class="dd-item"><div class="dd-handle">' + (memlist[i].list.length > 0 ? '<span class="hassubitem" style="color: red;margin-right: 5px;">+</span>' : '') + memlist[i].name + '</div>' + listhtml + '</li>';
+            $.ajax({
+                type: "GET",
+                url: "getuser.php",
+                dataType: "json",
+                success: function (data) {
+                    html += InitTree(data);
+                    html += '</ol>'
+                    $('#nestable').html(html)
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
                 }
+            });
 
-                return treehtml;
-            }
 
-            html += InitTree(__memList);
-            html += '</ol>'
-            $('#nestable').html(html)
         }
 
         InitMemTrees();
@@ -709,6 +710,20 @@ $(function () {
     }
 
 })
+
+function InitTree(memlist) {
+    var treehtml = '';
+    for (var i = 0; i < memlist.length; i++) {
+        var listhtml = '';
+        if (memlist[i].nodes && memlist[i].nodes.length > 0) {
+            listhtml = '<ol class="dd-list" style="display: block;">' + InitTree(memlist[i].nodes) + '</ol>';
+        }
+        treehtml += '<li class="dd-item"><div class="dd-handle">' + (memlist[i].nodes && memlist[i].nodes.length > 0 ? '<span class="hassubitem" style="color: red;margin-right: 5px;">+</span>' : '') + memlist[i].name + '</div>' + listhtml + '</li>';
+    }
+
+    return treehtml;
+}
+
 function BindLanguageFunc() {
     $("#languageChange").on('change', function () {
         if ($(this).val() == "en") {
@@ -723,13 +738,13 @@ function BindLanguageFunc() {
 }
 function GetUserBlockHtml() {
     var list = [{
-        "href": "ziliaoxiugai.html", "class": "fa fa-edit fa-lg", "title": "资料修改"
+        "href": "info_user.php", "class": "fa fa-edit fa-lg", "title": "资料修改"
     }, {
-        "href": "mimaxiugai.html", "class": "fa fa-inbox fa-lg", "title": "密码修改"
+        "href": "pwd_user.php", "class": "fa fa-inbox fa-lg", "title": "密码修改"
     }, {
-        "href": "jiaoyimima.html", "class": "fa fa-edit fa-lg", "title": "交易密码"
+        "href": "jypwd_user.php", "class": "fa fa-edit fa-lg", "title": "交易密码"
     }, {
-        "href": "signin.html", "class": "fa fa-power-off fa-lg", "title": "退出"
+        "href": "logout.php", "class": "fa fa-power-off fa-lg", "title": "退出"
     }];
 
     var html = '<div class="panel-body paddingTB-sm"><ul>';
@@ -746,7 +761,7 @@ function GetSideMenuHtml() {
     var list = [{
         "class": "bg-palette1",
         "class2": "block fa fa-home fa-lg",
-        "href": "index.html",
+        "href": "main.php",
         "title": "首页",
         "subtitle": "首页",
         "submenu": null
@@ -754,7 +769,7 @@ function GetSideMenuHtml() {
     }, {
         "class": "bg-palette2",
         "class2": "block fa fa-desktop fa-lg",
-        "href": "tuiguang.html",
+        "href": "tg_user.php",
         "title": "推广信息",
         "subtitle": "推广",
         "submenu": null
@@ -766,15 +781,15 @@ function GetSideMenuHtml() {
         "title": "钱包管理",
         "subtitle": "钱包",
         "submenu": {
-            "class": "submenu bg-palette4", "list": [{"title": "会员等级提升", "href": "memlevelup.html"},
-                {"title": "会员转账", "href": "memtrans.html"}, {"title": "会员明细", "href": "memdetail.html"}]
+            "class": "submenu bg-palette4", "list": [{"title": "会员等级提升", "href": "levelup_user.php"},
+                {"title": "会员转账", "href": "trans_user.php"}, {"title": "会员明细", "href": "detail_user.php"}]
         }
 
     },
         {
             "class": "bg-palette4",
             "class2": "block fa fa-tags fa-lg",
-            "href": "tixian.html",
+            "href": "tx_user.php",
             "title": "提现管理",
             "subtitle": "提现",
             "submenu": null
@@ -783,7 +798,7 @@ function GetSideMenuHtml() {
         {
             "class": "bg-palette1",
             "class2": "block fa fa-envelope fa-lg",
-            "href": "huikuan.html",
+            "href": "hk_user.php",
             "title": "汇款管理",
             "subtitle": "汇款",
             "submenu": null
@@ -795,8 +810,8 @@ function GetSideMenuHtml() {
             "title": "信息管理",
             "subtitle": "信息",
             "submenu": {
-                "class": "submenu bg-palette4", "list": [{"title": "收件箱", "href": "xinxi.html"},
-                    {"title": "写邮件", "href": "xieyoujian.html"}]
+                "class": "submenu bg-palette4", "list": [{"title": "收件箱", "href": "sfyx_user.php"},
+                    {"title": "写邮件", "href": "xyj_user.php"}]
             }
 
         }, {
@@ -806,8 +821,8 @@ function GetSideMenuHtml() {
             "title": "个人信息管理",
             "subtitle": "管理",
             "submenu": {
-                "class": "submenu bg-palette4", "list": [{"title": "资料修改", "href": "ziliaoxiugai.html"},
-                    {"title": "密码修改", "href": "mimaxiugai.html"}, {"title": "交易密码", "href": "jiaoyimima.html"}]
+                "class": "submenu bg-palette4", "list": [{"title": "资料修改", "href": "info_user.php"},
+                    {"title": "密码修改", "href": "pwd_user.php"}, {"title": "交易密码", "href": "jypwd_user.php"}]
             }
 
         }];
@@ -840,13 +855,13 @@ function GetSideMenuHtml() {
 
 function GetSidebarHtml() {
     var list = [{
-        "href": "ziliaoxiugai.html", "class": "fa fa-edit fa-lg", "title": "资料修改"
+        "href": "info_user.php", "class": "fa fa-edit fa-lg", "title": "资料修改"
     }, {
-        "href": "mimaxiugai.html", "class": "fa fa-inbox fa-lg", "title": "密码修改"
+        "href": "pwd_user.php", "class": "fa fa-inbox fa-lg", "title": "密码修改"
     }, {
-        "href": "jiaoyimima.html", "class": "fa fa-edit fa-lg", "title": "交易密码"
+        "href": "jypwd_user.php", "class": "fa fa-edit fa-lg", "title": "交易密码"
     }, {
-        "href": "signin.html", "class": "fa fa-power-off fa-lg", "title": "退出"
+        "href": "logout.php", "class": "fa fa-power-off fa-lg", "title": "退出"
     }];
 
     var html = '<div class="user-dropdown dropup pull-left"><a href="#" class="dropdwon-toggle font-18" data-toggle="dropdown"><i class="ion-person-add"></i></a><ul class="dropdown-menu">';
@@ -861,16 +876,16 @@ function GetSidebarHtml() {
 
 function GetUserDropDownHtml() {
     var list = [{
-        "href": "ziliaoxiugai.html", "class": "fa fa-edit fa-lg", "title": "资料修改"
+        "href": "info_user.php", "class": "fa fa-edit fa-lg", "title": "资料修改"
     }, {
-        "href": "mimaxiugai.html", "class": "fa fa-inbox fa-lg", "title": "密码修改"
+        "href": "pwd_user.php", "class": "fa fa-inbox fa-lg", "title": "密码修改"
     }, {
-        "href": "jiaoyimima.html", "class": "fa fa-edit fa-lg", "title": "交易密码"
+        "href": "jypwd_user.php", "class": "fa fa-edit fa-lg", "title": "交易密码"
     }, {
-        "href": "signin.html", "class": "fa fa-power-off fa-lg", "title": "退出"
+        "href": "logout.php", "class": "fa fa-power-off fa-lg", "title": "退出"
     }];
 
-    var html = '<li class="user-avatar"><img src="images/profile/profile1.jpg" alt="" class="img-circle"><div class="user-content"><h5 class="no-m-bottom">Jane Doe</h5><div class="m-top-xs"><a href="signin.html">Log out</a></div></div></li><li>';
+    var html = '<li class="user-avatar"><img src="' + _userHeadPic + '" alt="" class="img-circle"><div class="user-content"><h5 class="no-m-bottom">' + _userName + '</h5><div class="m-top-xs"><a href="signin.html">退出</a></div></div></li><li>';
     for (var i = 0; i < list.length; i++) {
         var item = list[i];
         html += '<li><a href="' + item.href + '">' + item.title + '</a></li>';

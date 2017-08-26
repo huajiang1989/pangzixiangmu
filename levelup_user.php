@@ -146,7 +146,7 @@ echo '<!DOCTYPE html>
                     </li>
                 </ul>
 
-                <a href="index.html" class="brand">
+                <a href="main.php" class="brand">
                     <i class="fa fa-database"></i><span class="brand-name">心爱网</span>
                 </a>
             </div>
@@ -169,18 +169,18 @@ echo '<!DOCTYPE html>
                 <div class="pull-right m-right-sm">
                     <div style="position: relative;float: left;display: block; margin-right: 20px;padding: 20px 0;outline: none;">
                         <div class="user-detail inline-block">
-                            <a style="color:red;">级别：</a>村代理
+                            <a style="color:red;">级别：</a>';if($user["rank"]=="0") echo '未确定';else echo getuserrank($user["rank"]);echo ' 
                         </div>
                         <div class="user-detail inline-block">
-                            <a style="color:red;">账号：</a>A
+                            <a style="color:red;">账号：</a>';echo $user["username"];echo '
                         </div>
                         <div class="user-detail inline-block">
-                            <a style="color:red;">业绩：</a>1000
+                            <a style="color:red;">业绩：</a>';echo $user["summoney"];echo '
                         </div>
                     </div>
                     <div class="user-block hidden-xs">
                         <a href="#" id="userToggle" data-toggle="dropdown">
-                            <img src="images/profile/profile1.jpg" alt=""
+                            <img src="images/profile/';if(empty($user["sex"])) echo 'a4.png';else { if(trim($user["sex"])=="男") echo 'profile9.jpg'; else echo 'profile2.jpg'; }echo ' " alt=""
                                  class="img-circle inline-block user-profile-pic">
                             <div class="user-detail inline-block">
                                 ';echo $user["realname"];echo '
@@ -210,7 +210,7 @@ echo '<!DOCTYPE html>
     <div class="main-container">
         <div class="padding-md">
             <ul class="breadcrumb">
-                <li><span class="primary-font"><i class="icon-home"></i></span><a href="index.html">首页</a></li>
+                <li><span class="primary-font"><i class="icon-home"></i></span><a href="main.php">首页</a></li>
                 <li>钱包管理</li>
                 <li>';if($user["state"]=="0") echo '会员等级选择'; else echo '会员等级提升' ;echo '</li>
             </ul>
@@ -326,7 +326,15 @@ echo '<!DOCTYPE html>
 
 <!-- Slimscroll -->
 <script src="js/jquery.slimscroll.min.js"></script>
-
+<script>
+    var _userName = '<?php echo $user["realname"];?>' || "尊贵的会员";
+    var _userSex = '<?php echo $user["sex"];?>';
+    var _userHeadPic = (function () {
+        if (!_userSex)return 'images/profile/a4.png';
+        else if (_userSex == "男") return 'images/profile/profile9.png';
+        else  return 'images/profile/profile2.png';
+    })();
+</script>
 <!-- Simplify -->
 <script src="src/js/sideMenu.js"></script>
 <script src="js/simplify/simplify.js"></script>
